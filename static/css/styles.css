@@ -1,0 +1,37 @@
+.img-container {
+    height: 16rem; /* Cố định chiều cao khung chứa hình ảnh */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain; /* Giữ nguyên tỷ lệ hình ảnh */
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.card-title {
+    margin-bottom: auto; /* Đẩy tiêu đề lên trên */
+}
+
+.card-body p {
+    margin-top: auto; /* Đẩy giá tiền xuống dưới */
+}
+
+.card-body a {
+    margin-top: 5px; /* Đảm bảo nút Buy Now luôn nằm dưới giá tiền */
+}
+
+.card {
+    flex: 1 1 calc(20% - 1em); /* Chiếm 20% chiều rộng và tạo khoảng cách */
+    max-width: calc(20% - 1em);
+    margin: 1em;
+}

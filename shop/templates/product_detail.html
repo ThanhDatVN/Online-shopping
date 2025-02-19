@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+{% block content %}
+
+<div class="row mb-3 mt-4">
+    <div class="col-md-1"></div>
+    <!-- product content -->
+    <div class="col-md-5 p-3 border rounded">
+        <!-- category -->
+        <div class="border-bottom mb-2 pb-2">
+            <span class="text-muted ">categories:</span><a class="text-decoration-none text-dark" href="{% url 'shop:filter_by_category' product.category.slug %}"> {{product.category}}</a>
+        </div>
+        <!-- title -->
+        <h2>{{ product.title }}</h2>
+        <!-- price -->
+        <h4 class="mt-4 text-dark">Price: {{ product.price|currency }}</h4>
+        <!-- description -->
+        <div class="mt-4 pe-3 mb-5">{{ product.description }}</div>
+        <!-- cart btn -->
+        <form method="post" action="{% url 'cart:add_to_cart' product.id %}">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" class="btn btn-primary mt-4" value="Add to cart">
+        </form>
+        <br>
+        {% if favorites == 'remove' %}
+        <a href="{% url 'shop:remove_from_favorites' product.id %}" class="btn btn-outline-danger mt-5 text-capitalize ">{{favorites}} from favorites</a>
+        {% else %}
+        <a href="{% url 'shop:add_to_favorites' product.id %}" class="btn btn-outline-success mt-5 text-capitalize ">add to {{favorites}}</a>
+        {% endif %}
+    </div>
+    <!-- product image -->
+    <div class="col-md-6">
+        <img style="object-fit: cover; width: 100%; height: auto;" class="rounded" src="{% if product.image %}{{ product.image.url }}{% else %}{{ product.image_url }}{% endif %}">
+    </div>
+</div>
+<!-- recommended products -->
+<div class="row mt-4 mb-4">
+    <h3>Recommended Products:</h3><hr>
+    <div class="d-flex flex-wrap justify-content-between">
+        {% for p in recommended_products %}
+            <!-- dont show the current product in this page -->
+            {% if p != product %}
+                <div class="card mb-2" style="flex: 1 1 calc(20% - 1em); max-width: calc(20% - 1em); display: flex; flex-direction: column; justify-content: space-between;">
+                    <div class="img-container" style="height: 16rem; display: flex; align-items: center; justify-content: center;">
+                        <img style="max-height: 100%; max-width: 100%; object-fit: contain;" class="card-img mt-2" src="{% if p.image %}{{ p.image.url }}{% else %}{{ p.image_url }}{% endif %}" alt="{{ p.title }}">
+                    </div>
+                    <div class="card-body d-flex flex-column justify-content-between text-center">
+                        <div>
+                            <h5 class="card-title">{{ p.title }}</h5>
+                        </div>
+                        <div class="mt-auto">
+                            <p class="text-muted">{{ p.price|currency }}</p>
+                            <a href="{{ p.get_absolute_url }}" class="btn btn-outline-primary w-100">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
