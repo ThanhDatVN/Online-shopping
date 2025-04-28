@@ -5,8 +5,8 @@ This is the final project for the Online Shopping application. It uses Docker to
 ## Hướng dẫn sử dụng
 
 ### Yêu cầu
-- Docker
-- Docker Compose
+- docker
+- docker Compose
 
 ### Cài đặt và khởi động dự án
 
