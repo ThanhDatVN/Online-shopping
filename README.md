@@ -39,14 +39,6 @@ This is the final project for the Online Shopping application. It uses Docker to
 - Email: manager@example.com
 - Mật khẩu: managerpass1234
 
-## Đóng góp
-
-1. Fork this repository
-2. Create a new branch (`git checkout -b feature-branch`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin feature-branch`)
-5. Create a new Pull Request
-
 ## Giấy phép
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
